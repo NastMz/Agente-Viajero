@@ -37,6 +37,8 @@ class MainWindow(QMainWindow):
         best_route = sorted(self.population, key=lambda route: route.distance)[0]
         self.ui.label_4.setText(str(f'{best_route.distance:.3f}'))
 
+        self.ui.pushButton_2.setEnabled(False)
+
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.update)
 
@@ -44,8 +46,9 @@ class MainWindow(QMainWindow):
         self.ui.pushButton_2.clicked.connect(lambda: self.stop_timer())
 
     def start_timer(self):
-        self.timer.start(300)
+        self.timer.start(800)
         self.ui.startBtn.setEnabled(False)
+        self.ui.pushButton_2.setEnabled(True)
 
     def stop_timer(self):
         self.timer.stop()
